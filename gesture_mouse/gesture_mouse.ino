@@ -5,15 +5,17 @@
 
 float Ythreshhold = 5.00; //degrees
 float Xthreshhold = 5.00; //degrees
-float Xthreshholdtop = 40.00; //degrees
+float Xthreshholdtop = 30.00; //degrees
 float Ythreshholdtop = 40.00; //degrees
 float clickThreshhold = 1.65; //accel value
-float scrollthreshhold = 40.00; //degrees; same as Xangle; i.e. Xthreshholdtop
+float scrollthreshhold = 30.00; //degrees; same as Xangle; i.e. Xthreshholdtop
 float switchdesktopthreshhold = 350.00; //gyro value
 
 int clickcounter;
 boolean isClicked = false;
 
+float gyroZ;
+float accelZ;
 float Xangle, Yangle, Zangle;
 float lastXangle, lastYangle, lastZangle;
 
@@ -49,17 +51,18 @@ void loop(){
 
   if ((abs(Xangle) > Xthreshhold && abs(Xangle) < Xthreshholdtop) || (abs(Yangle) > Ythreshhold && abs(Yangle) < Ythreshholdtop)){
     //if (abs(Yangle) > Ythreshhold){
-    Mouse.move(map(Yangle,5,15,0,2),map(Xangle,5,15,0,2));
+    Mouse.move(map(Yangle,5,15,0,2),map(Xangle,5,12,0,2));
   }
 
   if (abs(Xangle) > scrollthreshhold){
     if (Xangle < -scrollthreshhold){
       Mouse.move(0,0,-1);
+      delay(map(Xangle,-scrollthreshhold,-45,85,45));//65
     }
     else {
       Mouse.move(0,0,1);
+      delay(map(Xangle,scrollthreshhold,45,85,45));//65
     }
-    delay(65);
   }
   
   if (isClicked){
