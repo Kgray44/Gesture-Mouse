@@ -17,7 +17,6 @@ boolean isClicked = false;
 float gyroZ;
 float accelZ;
 float Xangle, Yangle, Zangle;
-float lastXangle, lastYangle, lastZangle;
 
 int timer;
 
@@ -120,11 +119,6 @@ void loop(){
   else {
     timer=0;
   }
-  
-  lastXangle = Xangle;
-  lastYangle = Yangle;
-  lastZangle = Zangle;
-
 
   delay(1);
 }
